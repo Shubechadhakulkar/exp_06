@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .temp-calculator{
+            background-color:palevioletred;
+            text-align: center;
+            border-style:double;
+            border-radius: 50px;
+            width: 300px;
+            border:15px solid yellow;
+            margin:10px;
+            padding:100px;
+        }
+        .title{
+            font-size: 20px;
+        }
+        .temp_calculator_inputs{
+            color:white;
+        }
+
+        .result_area{
+            color:white;
+            
+        }
+
+        #input_value{
+            padding:2px;
+        }
+
+        .box{
+            border:1px solid rgb(182, 13, 69);
+            margin-bottom:10px;
+            margin-right:150px;
+            margin-left:80px;
+            padding:4px;
+            
+        }
+
+        .cal-btn{
+            margin-bottom:10px;
+            padding:10px;
+            border-radius: 5px;
+        }
+
+
+
+        
+
+        
+        
+        
+
+    </style>
+</head>
+<body>
+    <div class="temp-calculator">
+        <h4 class="title ">Convert Temperature</h4>
+        <form action="" name="form">
+            <div class="temp_calculator_inputs">
+                <div class="calculator_value">
+                    <label for="" >Value To Convert:</label>
+                    <input class="box" type="number" placeholder="0" name="value" id="input_value">
+                </div>
+                <div class="calculator_input">
+                    <label for="">From:</label>
+                    <select class="box" name = "input" id="input">
+                        <option value = "celsius">Celsius (°C)</option>
+                        <option value ="fahrenheit">Fahrenheit (°F)</option>
+                        <option value = "Kelvin">Kelvin (K) </option>
+                    </select>
+                </div>
+            <div class= "calculator_input" >
+                <label for ="">To:</label>
+                <select class="box" name="output" id ="output">
+                    <option value="celsius">Celsius (°C)</option>
+                    <option value="fahrenheit">Fahrenheit(°F)</option>
+                    <option value="kelvin">Kelvin(K)</option>
+                </select>
+            </div>
+            </div>
+            <button type="button" id="clear" class="cal-btn" onclick="reset()">Clear</button>
+            <button type="button" id="clear" class="cal-btn" onclick="convertTemperature()">Convert</button>
+            <div class="result_area">
+                <label  for="">Answer:</label>
+                <input  type="text" value="" id="result">
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        function convertTemperature(){
+            let val = document.getElementById("input_value");
+            let result =document.getElementById("result");
+            let input = document.getElementById('input');
+            let output = document.getElementById("output");
+           
+
+           val.addEventListener("keyup", convertTemperature);
+           input.addEventListener("change",convertTemperature);
+           output.addEventListener("change",convertTemperature);
+
+           let inputValue = input.value;
+           let outputValue= output.value;
+
+           //Celsius
+
+           if(inputValue === "celsius" && outputValue === "fahrenheit"){
+            result.value = Number((val.value)) *9/5 +32;
+            }else if(inputValue === "celsius" && outputValue === "kelvin"){
+                result.value = Number (val.value) + 273.15;
+
+            }else if (inputValue === "celsius" && outputValue === "celsius"){
+                result.value = val.value;
+            }
+
+            //Fahrenheit
+            if(inputValue === "fahrenheit" && outputValue === "celsius"){
+                result.value = Number ((val.value -32)* 5)/9;
+            }else if(inputValue === "fahrenheit" && outputValue === "celsius"){
+                result.value = Number ((val.value -32)* 5/9) + 273.15;
+
+            }else if(inputValue === "fahrenheit" && outputValue =="fahrenheit"){
+                result.value = val.value;
+            }
+
+            //Kelvin
+            if(inputValue === "kelvin" && outputValue === "celsius"){
+                result.value = Number (val.value) - 273.15;
+            }else if (inputValue === "kelvin" && outputValue === "fahrenheit"){
+                result.value = Number ((val.value - 273.15)* 9/5) * 32;
+            }else if(inputValue === "kelvin" && outputValue === "kelvin"){
+                result.value = val.value;
+            }
+
+
+            
+        }
+
+        function reset(){
+            convertTemperature();
+
+        } 
+    </script>
+
+</body>
+</html>
